@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salón de Eventos Elegance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-dark: #aa8c2c;
+      --dark: #121212;
+      --dark-light: #1e1e1e;
+      --text-main: #f5f5f5;
+      --text-muted: #a0a0a0;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--dark);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #2a2a2a 0%, #121212 100%);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 30px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--gold);
+      font-size: 3.5rem;
+      font-style: italic;
+      margin: 0 0 15px 0;
+      letter-spacing: 2px;
+    }
+
+    .host-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--dark-light);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .card h2 {
+      font-family: var(--font-serif);
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ccc;
+    }
+
+    input, select {
+      width: 100%;
+      background: #121212;
+      border: 1px solid #333;
+      color: white;
+      padding: 12px 15px;
+      font-family: var(--font-sans);
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #000;
+      border: none;
+      width: 100%;
+      padding: 15px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 15px 10px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      color: var(--gold);
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    .table-container {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <header>
+      <h1>Salón de Eventos Elegance</h1>
+      <div class="host-badge">{{HOST_INFO}}</div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Nueva Reserva</h2>
+        <form id="reservaForm">
+          <div class="form-group">
+            <label>Nombre del Cliente</label>
+            <input type="text" id="cliente" required placeholder="Ej. Familia López">
+          </div>
+          <div class="form-group">
+            <label>Tipo de Evento</label>
+            <select id="tipo" required>
+              <option value="Boda">Boda</option>
+              <option value="XV Años">XV Años</option>
+              <option value="Graduación">Graduación</option>
+              <option value="Corporativo">Evento Corporativo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Fecha del Evento</label>
+            <input type="date" id="fecha" required>
+          </div>
+          <div class="form-group">
+            <label>Cantidad de Invitados</label>
+            <input type="number" id="invitados" min="1" max="500" value="100" required>
+          </div>
+          <button type="submit">Confirmar Fecha</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Reservas Confirmadas</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Evento</th>
+                <th>Fecha</th>
+                <th>Invitados</th>
+              </tr>
+            </thead>
+            <tbody id="reservasList">
+              <tr><td colspan="4" style="text-align: center; padding: 30px;">Cargando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function cargarReservas() {
+      const tbody = document.getElementById('reservasList');
+      try {
+        const res = await fetch('/api/reservas');
+        const reservas = await res.json();
+        
+        if (reservas.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 30px; color: #777;">No hay eventos agendados aún.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = reservas.map(r => `
+          <tr>
+            <td style="font-weight: 500;">${r.cliente}</td>
+            <td style="color: #aaa;">${r.tipo}</td>
+            <td>${r.fecha}</td>
+            <td>👥 ${r.invitados}</td>
+          </tr>
+        `).join('');
+      } catch (error) {
+        tbody.innerHTML = '<tr><td colspan="4" style="color: red;">Error al cargar las reservas.</td></tr>';
+      }
+    }
+
+    document.getElementById('reservaForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        cliente: document.getElementById('cliente').value,
+        tipo: document.getElementById('tipo').value,
+        fecha: document.getElementById('fecha').value,
+        invitados: document.getElementById('invitados').value
+      };
+
+      const btn = e.target.querySelector('button');
+      const originalText = btn.innerText;
+      btn.innerText = 'Guardando...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/reservas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if(res.ok) {
+          e.target.reset();
+          await cargarReservas();
+        } else {
+          alert('Ocurrió un error al guardar la reserva.');
+        }
+      } catch (err) {
+        alert('Error de conexión con el servidor.');
+      } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', cargarReservas);
+  </script>
+</body>
+</html>

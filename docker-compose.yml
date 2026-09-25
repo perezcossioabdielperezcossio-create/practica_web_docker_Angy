@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: salon_eventos_web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app
+      - datos_salon:/data
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  datos_salon:
